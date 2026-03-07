@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maneesh | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --navy:    #fdf6f0;
+      --navy2:   #fff8f4;
+      --navy3:   #f5e6de;
+      --teal:    #c0575a;
+      --white:   #2d2d2d;
+      --slate:   #666666;
+      --light-slate: #444444;
+      --lightest-slate: #1a1a1a;
+      --font:    'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--navy);
+      color: var(--lightest-slate);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(100,255,218,0.08);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 50px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 1px;
+    }
+
+    nav { }
+    nav ul { list-style: none; display: flex; gap: 6px; }
+    nav ul li { }
+    nav ul li a {
+      color: var(--light-slate);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav ul li a:hover { color: var(--teal); background: rgba(100,255,218,0.05); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+    }
+
+    .hero-photo-ring {
+      width: 190px; height: 190px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--teal), #1d3461);
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .hero-photo {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border: 4px solid var(--navy);
+    }
+
+    .hero-hi {
+      font-size: 1rem;
+      color: var(--teal);
+      font-family: monospace;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--lightest-slate);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      color: var(--slate);
+      margin-bottom: 2.2rem;
+    }
+    .hero-tagline span { color: var(--light-slate); }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 11px 22px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-teal {
+      background: transparent;
+      color: var(--teal);
+      border: 1px solid var(--teal);
+    }
+    .btn-teal:hover { background: rgba(100,255,218,0.08); transform: translateY(-2px); }
+    .btn-slate {
+      background: transparent;
+      color: var(--light-slate);
+      border: 1px solid var(--light-slate);
+    }
+    .btn-slate:hover { color: var(--teal); border-color: var(--teal); background: rgba(100,255,218,0.05); transform: translateY(-2px); }
+
+    /* ── SECTIONS ── */
+    .section-wrap {
+      padding: 80px 10%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+    .section-heading h2 {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--lightest-slate);
+      white-space: nowrap;
+    }
+    .section-heading h2 .num {
+      display: none;
+    }
+    .section-heading::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: var(--navy3);
+      flex: 1;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--slate);
+      font-size: 0.93rem;
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .about-text strong { color: var(--lightest-slate); }
+
+    .about-text h3 {
+      color: var(--light-slate);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .about-photo-frame {
+      position: relative;
+      max-width: 280px;
+    }
+    .about-photo-frame::after {
+      content: '';
+      position: absolute;
+      top: 15px; left: 15px;
+      right: -15px; bottom: -15px;
+      border: 2px solid var(--teal);
+      border-radius: 6px;
+      z-index: 0;
+      transition: top 0.2s, left 0.2s;
+    }
+    .about-photo-frame:hover::after { top: 8px; left: 8px; }
+    .about-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      background: rgba(100,255,218,0.07);
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .about-photo-frame:hover::before { opacity: 0; }
+    .about-photo {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(20%);
+      position: relative; z-index: 1;
+      transition: filter 0.3s;
+    }
+    .about-photo:hover { filter: none; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--navy2);
+      border: 1px solid rgba(100,255,218,0.08);
+      border-radius: 8px;
+      padding: 22px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(100,255,218,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .skill-card h4 {
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      font-family: monospace;
+    }
+    .skill-card p { color: var(--slate); font-size: 0.86rem; line-height: 1.7; }
+
+    /* ── EXPERIENCE ── */
+    .exp-sub-title {
+      color: var(--light-slate);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--navy3);
+    }
+
+    .exp-block { margin-bottom: 48px; }
+
+    .exp-item {
+      background: var(--navy2);
+      border-radius: 8px;
+      padding: 26px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(100,255,218,0.06);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .exp-item:hover { border-color: rgba(100,255,218,0.2); transform: translateX(4px); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+    .exp-role { font-size: 1rem; font-weight: 600; color: var(--lightest-slate); }
+    .exp-date { font-family: monospace; font-size: 0.78rem; color: var(--teal); }
+    .exp-company { font-size: 0.85rem; color: var(--teal); margin-bottom: 12px; }
+
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      color: var(--slate); font-size: 0.86rem; line-height: 1.7;
+      padding-left: 18px; position: relative; margin-bottom: 5px;
+    }
+    .exp-bullets li::before { content: '▹'; position: absolute; left: 0; color: var(--teal); }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .proj-card {
+      background: var(--navy2);
+      border-radius: 8px;
+      padding: 30px;
+      border: 1px solid rgba(100,255,218,0.06);
+      display: flex; flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .proj-card:hover { transform: translateY(-6px); border-color: rgba(100,255,218,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+    .proj-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .proj-icon { font-size: 2.2rem; }
+    .proj-gh a { color: var(--light-slate); font-size: 0.85rem; transition: color 0.2s; text-decoration: none; }
+    .proj-gh a:hover { color: var(--teal); }
+
+    .proj-title { font-size: 1.05rem; font-weight: 600; color: var(--lightest-slate); margin-bottom: 8px; transition: color 0.2s; }
+    .proj-card:hover .proj-title { color: var(--teal); }
+
+    .proj-desc { color: var(--slate); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px; }
+
+    .proj-bullets { list-style: none; margin-bottom: 12px; }
+    .proj-bullets li {
+      color: var(--slate); font-size: 0.82rem; line-height: 1.6;
+      padding-left: 16px; position: relative; margin-bottom: 4px;
+    }
+    .proj-bullets li::before { content: '▹'; position: absolute; left: 0; color: var(--teal); font-size: 0.7rem; top: 2px; }
+
+    .proj-accuracy {
+      display: inline-block;
+      color: var(--teal); font-family: monospace; font-size: 0.78rem; font-weight: 600;
+      border: 1px solid rgba(100,255,218,0.3); padding: 2px 10px; border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+    .proj-tech span { font-family: monospace; font-size: 0.74rem; color: var(--slate); }
+    .proj-tech span:not(:last-child)::after { content: ' ·'; color: var(--teal); }
+
+    /* ── CERTS ── */
+    .cert-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .cert-item {
+      background: var(--navy2);
+      border-radius: 8px; padding: 26px;
+      border: 1px solid rgba(100,255,218,0.06);
+      display: flex; gap: 18px; align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cert-item:hover { border-color: rgba(100,255,218,0.2); transform: translateX(4px); }
+    .cert-arrow { color: var(--teal); font-size: 1rem; flex-shrink: 0; margin-top: 3px; }
+    .cert-name { font-size: 1rem; font-weight: 600; color: var(--lightest-slate); margin-bottom: 4px; }
+    .cert-issuer { font-family: monospace; font-size: 0.78rem; color: var(--teal); margin-bottom: 8px; }
+    .cert-desc { font-size: 0.85rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── INTERESTS ── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .interest-card {
+      background: var(--navy2);
+      border-radius: 8px;
+      padding: 28px 24px;
+      border: 1px solid rgba(100,255,218,0.06);
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .interest-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--teal), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .interest-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(100,255,218,0.25);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    }
+    .interest-card:hover::before { opacity: 1; }
+
+    .interest-emoji {
+      font-size: 2.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .interest-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--lightest-slate);
+      margin-bottom: 8px;
+    }
+    .interest-desc {
+      font-size: 0.83rem;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+    .interest-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: monospace;
+      font-size: 0.72rem;
+      color: var(--teal);
+      border: 1px solid rgba(100,255,218,0.25);
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── CONTACT ── */
+    #contact-wrap {
+      padding: 80px 10% 60px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-num { font-family: monospace; font-size: 0.85rem; color: var(--teal); margin-bottom: 14px; }
+    .contact-title { font-size: clamp(1.8rem, 4.5vw, 3rem); font-weight: 700; color: var(--lightest-slate); margin-bottom: 18px; }
+    .contact-text { color: var(--slate); font-size: 0.93rem; line-height: 1.8; margin-bottom: 40px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: var(--slate);
+    }
+    footer a { color: var(--teal); }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── FADE-IN ── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav ul { display: none; }
+      .section-wrap { padding: 60px 6%; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-frame { max-width: 220px; margin: 0 auto; }
+      #contact-wrap { padding: 60px 6%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">MK.</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#contact-wrap">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-photo-ring">
+      <img src="Profile_Pic.jpeg" alt="Maneesh Kumar Chintakindi" class="hero-photo"/>
+    </div>
+    <p class="hero-hi">Hi, I'm</p>
+    <h1 class="hero-name">Maneesh Kumar Chintakindi</h1>
+    <p class="hero-tagline">
+      <span>AI & ML Engineer</span> &nbsp;|&nbsp; Data Scientist &nbsp;|&nbsp; Data Analyst &nbsp;|&nbsp; Cloud Enthusiast
+    </p>
+    <div class="hero-btns">
+      <a href="Maneesh_Resume1.pdf" target="_blank" class="btn btn-teal">📄 Resume</a>
+      <a href="https://www.linkedin.com/in/maneesh-kumar-chintakindi" target="_blank" class="btn btn-slate">💼 LinkedIn</a>
+      <a href="https://github.com/Chintu1024" target="_blank" class="btn btn-slate">🐙 GitHub</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="section-wrap" id="about">
+    <div class="section-heading fade-in">
+      <h2><span class="num">01.</span> About Me</h2>
+    </div>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm <strong>Maneesh Kumar Chintakindi</strong> — an AI/ML engineer and data enthusiast currently pursuing my Master's in Artificial Intelligence at the <strong>University of North Texas</strong> (GPA: 3.6/4.0). I'm passionate about turning complex data into intelligent systems and actionable insights that drive real-world decisions.</p>
+        <p>My experience spans the full data and AI pipeline — from <strong>exploratory data analysis and statistical modeling</strong> to building and deploying production-ready <strong>machine learning and deep learning models</strong>. I'm equally comfortable writing SQL queries for large datasets, engineering features for predictive models, building NLP pipelines, or visualizing insights through Tableau and Power BI dashboards.</p>
+        <p>At the <strong>Defence Research and Development Laboratory (DRDL)</strong>, I built predictive models that improved resource allocation efficiency by 20% — applying data-driven decision-making in one of the most high-stakes environments possible. My academic projects further demonstrate end-to-end ML development, from raw data processing to model deployment with Streamlit and Flask.</p>
+        <p>I'm actively seeking opportunities as an <strong>AI/ML Engineer, Data Scientist, Data Analyst, or Machine Learning Researcher</strong> — roles where I can apply my skills to solve meaningful problems at scale. Let's build something impactful together!</p>
+      </div>
+      <div>
+        <div class="about-photo-frame">
+          <img src="Profile_Pic.jpeg" alt="Maneesh Kumar" class="about-photo"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section-wrap" id="skills">
+    <div class="section-heading fade-in">
+      <h2><span class="num">02.</span> Skills</h2>
+    </div>
+    <div class="skills-grid fade-in">
+      <div class="skill-card">
+        <h4>Programming & Query Languages</h4>
+        <p>Python, R, C, SQL, NoSQL (MongoDB) — proficient in writing clean, efficient code for data pipelines, automation, statistical analysis, and model development.</p>
+      </div>
+      <div class="skill-card">
+        <h4>AI & Machine Learning</h4>
+        <p>Supervised & Unsupervised Learning, Classification, Regression, Clustering, Decision Trees, Random Forests, XGBoost, CNNs, RNNs, LSTMs, Transformers, Scikit-learn, TensorFlow, Keras, PyTorch.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Natural Language Processing</h4>
+        <p>Text Classification, Sentiment Analysis, Named Entity Recognition, Text Preprocessing, Tokenization, Word Embeddings (Word2Vec, GloVe), Hugging Face Transformers, Generative AI, Prompt Engineering, LLMs.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Data Analysis & Visualization</h4>
+        <p>Exploratory Data Analysis (EDA), Statistical Modeling, Hypothesis Testing, Feature Engineering, Pandas, NumPy, Matplotlib, Seaborn, Plotly, Tableau, Power BI — translating data into clear, actionable insights.</p>
+      </div>
+      <div class="skill-card">
+        <h4>MLOps & Model Deployment</h4>
+        <p>Model Versioning, Experiment Tracking (MLflow), CI/CD for ML Pipelines, Model Monitoring & Drift Detection, Streamlit, Flask, FastAPI, Docker (basics), REST API Development, Model Serialization (Pickle, ONNX).</p>
+      </div>
+      <div class="skill-card">
+        <h4>Cloud Platforms</h4>
+        <p>Microsoft Azure (AI Services, ML Studio, Cognitive Services, Blob Storage, Azure Functions), Google Cloud Platform (BigQuery, Vertex AI basics), AWS (S3, basics) — deploying and scaling AI workloads in the cloud.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Data Engineering</h4>
+        <p>ETL Pipeline Design, Data Cleaning & Preprocessing, Data Wrangling, Big Data Concepts, Apache Spark (basics), Database Design, MySQL, PostgreSQL, Data Warehousing concepts.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Developer Tools & Practices</h4>
+        <p>Git & GitHub, Jupyter Notebook, VS Code, PyCharm, Google Colab, Agile Methodology, Technical Documentation, Research & Analytical Thinking, Cross-functional Collaboration.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section-wrap" id="experience">
+    <div class="section-heading fade-in">
+      <h2><span class="num">03.</span> Experience</h2>
+    </div>
+
+    <div class="exp-block fade-in">
+      <div class="exp-sub-title">Professional Experience</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Project Research Assistant — AI & Predictive Modeling</div>
+          <div class="exp-date">January 2024 – May 2024</div>
+        </div>
+        <div class="exp-company">Defence Research and Development Laboratory (DRDL) · Hyderabad, India</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented machine learning models for Threat Evaluation and Resource Allocation, directly contributing to national defense decision-making pipelines.</li>
+          <li>Achieved a <strong>20% improvement in resource allocation efficiency</strong> through data-driven predictive modeling and algorithm optimization.</li>
+          <li>Performed end-to-end data analysis — including data cleaning, feature engineering, model training, and performance evaluation — on complex, real-world defense datasets.</li>
+          <li>Collaborated with a cross-functional team of AI researchers and domain experts, translating analytical findings into strategic, actionable recommendations.</li>
+          <li>Applied statistical modeling techniques to identify patterns in large datasets, enabling real-time threat assessment and informed decision-making.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-block fade-in">
+      <div class="exp-sub-title">Academic & Project Experience</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">ML Engineer — Speech Emotion Recognition System</div>
+          <div class="exp-date">Academic Project · 2024</div>
+        </div>
+        <div class="exp-company">University of North Texas</div>
+        <ul class="exp-bullets">
+          <li>Architected an end-to-end deep learning pipeline using CNNs and RNNs to classify emotions from speech audio, achieving <strong>85%+ classification accuracy</strong>.</li>
+          <li>Collected, cleaned, and engineered features from 10,000+ audio samples — applying MFCC and spectrogram extraction for robust acoustic representation.</li>
+          <li>Optimized model performance through systematic hyperparameter tuning, dropout regularization, and data augmentation, reducing overfitting significantly.</li>
+          <li>Deployed the trained model as an interactive web application using Streamlit, enabling real-time emotion detection from live speech inputs.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Data Analyst & ML Engineer — Spam Mail Detection</div>
+          <div class="exp-date">Academic Project · 2024</div>
+        </div>
+        <div class="exp-company">University of North Texas</div>
+        <ul class="exp-bullets">
+          <li>Built a multi-algorithm spam classification system combining Naïve Bayes, CNN, and SVM, achieving <strong>95%+ detection accuracy</strong> on large-scale email datasets.</li>
+          <li>Conducted thorough EDA and feature extraction — analyzing linguistic patterns, metadata signals, and email structure to engineer high-impact predictive features.</li>
+          <li>Deployed the model via a Flask web application, providing an intuitive interface for real-time email classification accessible to end users.</li>
+          <li>Designed interactive Power BI dashboards to visualize spam trends, model performance metrics, and classification distributions for stakeholder reporting.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section-wrap" id="projects">
+    <div class="section-heading fade-in">
+      <h2><span class="num">04.</span> Projects</h2>
+    </div>
+    <div class="projects-grid fade-in">
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon">🎙️</div>
+          <div class="proj-gh">
+            <a href="https://github.com/Chintu1024/Speech-Emotion-Recognizer-using-Machine-Learning-ALgorithms" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="proj-title">Speech Emotion Recognition System</div>
+        <p class="proj-desc">An end-to-end deep learning system that classifies human emotions from speech audio in real time — with applications in mental health monitoring, customer experience analytics, and adaptive AI interfaces.</p>
+        <ul class="proj-bullets">
+          <li>Built a hybrid CNN-RNN architecture to capture both spatial and temporal patterns in speech, achieving 85%+ emotion classification accuracy.</li>
+          <li>Engineered acoustic features (MFCC, spectrograms) from 10,000+ labeled audio samples with robust data preprocessing and augmentation.</li>
+          <li>Systematically tuned hyperparameters and applied regularization to maximize generalization across unseen speech data.</li>
+          <li>Deployed as a live Streamlit web app enabling real-time emotion detection from microphone input.</li>
+        </ul>
+        <div class="proj-accuracy">✓ 85%+ Accuracy</div>
+        <div class="proj-tech">
+          <span>CNN</span><span>RNN</span><span>Python</span><span>Streamlit</span><span>MFCC</span><span>Deep Learning</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon">📧</div>
+          <div class="proj-gh">
+            <a href="https://github.com/Chintu1024/Spam-Mail-Detection" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="proj-title">Spam Mail Detection & Analytics</div>
+        <p class="proj-desc">A robust multi-algorithm email classification system that combines traditional ML and deep learning for high-precision spam detection, paired with a real-time web interface and executive-level analytics dashboards.</p>
+        <ul class="proj-bullets">
+          <li>Engineered linguistic and metadata features from large-scale email datasets through in-depth EDA and text preprocessing.</li>
+          <li>Benchmarked and ensembled Naïve Bayes, SVM, and CNN models — achieving 95%+ spam detection accuracy with low false-positive rates.</li>
+          <li>Built and deployed a Flask web app for real-time email classification with a clean, user-friendly interface.</li>
+          <li>Created Power BI dashboards to communicate model performance, spam trends, and classification patterns to non-technical stakeholders.</li>
+        </ul>
+        <div class="proj-accuracy">✓ 95%+ Accuracy</div>
+        <div class="proj-tech">
+          <span>Naïve Bayes</span><span>SVM</span><span>CNN</span><span>Flask</span><span>Power BI</span><span>NLP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATES -->
+  <div class="section-wrap" id="certificates">
+    <div class="section-heading fade-in">
+      <h2><span class="num">05.</span> Certificates</h2>
+    </div>
+    <div class="cert-list fade-in">
+      <div class="cert-item">
+        <div class="cert-arrow">▹</div>
+        <div>
+          <div class="cert-name">Microsoft Certified: Azure AI Engineer Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+          <p class="cert-desc">Industry-recognized certification validating expertise in designing, building, and deploying AI solutions on Microsoft Azure. Covers applied AI workloads including NLP, computer vision, conversational AI, document intelligence, and knowledge mining — directly relevant to enterprise AI and data science roles.</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-arrow">▹</div>
+        <div>
+          <div class="cert-name">Generative AI with Large Language Models</div>
+          <div class="cert-issuer">DeepLearning.AI · Coursera</div>
+          <p class="cert-desc">Comprehensive training in the full generative AI development lifecycle — including transformer architecture, LLM pre-training and fine-tuning (RLHF, PEFT), prompt engineering, and responsible deployment strategies. Highly applicable to modern AI/ML engineering and data science workflows.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERESTS -->
+  <div class="section-wrap" id="interests">
+    <div class="section-heading fade-in">
+      <h2><span class="num">06.</span> Beyond the Code</h2>
+    </div>
+    <div class="interests-grid fade-in">
+      <div class="interest-card">
+        <span class="interest-emoji">🏏</span>
+        <div class="interest-title">Cricket</div>
+        <p class="interest-desc">Cricket isn't just a game for me — it's a passion. From the strategy of setting a field to the thrill of a last-over finish, cricket teaches teamwork, patience, and composure under pressure. Skills I bring to every project too.</p>
+        <span class="interest-tag">My #1 Passion</span>
+      </div>
+      <div class="interest-card">
+        <span class="interest-emoji">🎵</span>
+        <div class="interest-title">Music</div>
+        <p class="interest-desc">Music is my reset button. Whether it's focus playlists while deep in a model training run or winding down after a long day, the right track sets the tone. I believe great rhythm — in music and in code — makes all the difference.</p>
+        <span class="interest-tag">Always Listening</span>
+      </div>
+      <div class="interest-card">
+        <span class="interest-emoji">🔭</span>
+        <div class="interest-title">Exploring New Tech</div>
+        <p class="interest-desc">The AI landscape evolves fast, and I love keeping up. From experimenting with the latest LLMs to exploring emerging frameworks and tools, curiosity drives me. I'm at my best when I'm learning something new every week.</p>
+        <span class="interest-tag">Lifelong Learner</span>
+      </div>
+      <div class="interest-card">
+        <span class="interest-emoji">✈️</span>
+        <div class="interest-title">Travel</div>
+        <p class="interest-desc">Traveling broadens perspectives in ways no textbook can. Every new city, culture, and conversation adds a layer to how I think and problem-solve. From Hyderabad to Dallas — I carry every experience into the work I do.</p>
+        <span class="interest-tag">Always Exploring</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact-wrap">
+    <div class="contact-num fade-in">07. What's Next?</div>
+    <h2 class="contact-title fade-in">Get In Touch</h2>
+    <p class="contact-text fade-in">
+      I'm actively looking for full-time roles in <strong>AI/ML Engineering, Data Science, Data Analytics</strong>, and related fields. Whether you have an opportunity, want to collaborate on a project, or just want to connect — I'd love to hear from you!
+    </p>
+    <a href="mailto:maneeshchintakindi10@gmail.com" class="btn btn-teal fade-in">📩 Say Hello</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© Maneesh Kumar Chintakindi &nbsp;·&nbsp; <a href="mailto:maneeshchintakindi10@gmail.com">maneeshchintakindi10@gmail.com</a> &nbsp;·&nbsp; Dallas, Texas</p>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // Active nav highlight
+    const secEls = document.querySelectorAll('[id]');
+    const navAs  = document.querySelectorAll('nav a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secEls.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+      navAs.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--teal)' : '';
+      });
+    });
+
+    // Header shadow
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').style.boxShadow =
+        window.scrollY > 0 ? '0 4px 20px rgba(0,0,0,0.5)' : 'none';
+    });
+  </script>
+</body>
+</html>
